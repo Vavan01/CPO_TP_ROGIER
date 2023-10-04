@@ -26,7 +26,6 @@ public class TP1_convertisseur_ROGIER {
         System.out.println(valeur);
         System.out.println("\n Saisissez la conversion que vous souhaiter effectuer : \n1) De Celcius vers Kelvin \n2) De Kelvin vers Celcius \n3) De Fahrenheit vers Celcius \n4) De Celcius vers Fahrenheit \n5)De Kelvin vers Fahrenheit \n6) De Farenheit vers Kelvin");
         int nb2 = sc.nextInt (); // attend une nouvelle valeur de l'utilisateur
-        int valeur2 = nb2; // création d'une nouvelle variable  nb2
         if (nb2 == 1) { // utilisation de if et else if pour comparer la valuer de nb2
             System.out.println(valeur+ " degres Celcius est egal a " + CelciusVersKelvin(valeur) + " degre Kelvin");  
         } else if (nb2 == 2) {
