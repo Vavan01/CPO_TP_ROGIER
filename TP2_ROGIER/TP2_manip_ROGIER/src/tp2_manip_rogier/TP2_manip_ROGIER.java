@@ -35,11 +35,11 @@ public class TP2_manip_ROGIER {
         //Réponse :
         //Non, car le type de référence d'un objet est fixé dès sa déclaration et ne peut pas être changé par la suite.
         
-        Tartiflette assiette = assiette1;
-        assiette1 = assiette2;
-        assiette2 = assiette;
+        Tartiflette assiette = assiette1;//Création d'un objet "assiette" qui prend les données de "assiette1&
+        assiette1 = assiette2; //"assiette1" prend les données de "assiette2"
+        assiette2 = assiette; //Les données ont été inversées
         
-        Moussaka[] assiettes = new Moussaka[10];
+        Moussaka[] assiettes = new Moussaka[10]; //Création d'un tableau de 10 référence de Moussaka
         for (int i = 0; i < assiettes.length; i++) {
         assiettes[i] = new Moussaka();
         

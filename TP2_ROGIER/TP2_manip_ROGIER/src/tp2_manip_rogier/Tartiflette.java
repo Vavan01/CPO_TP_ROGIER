@@ -13,7 +13,7 @@ package tp2_manip_rogier;
 public class Tartiflette {
     int nbCalories;
     
-public Tartiflette (int nBCalories){
+public Tartiflette (int nBCalories){ //constructeur
     nbCalories = nBCalories;
 }
 }

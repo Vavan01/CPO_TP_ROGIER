@@ -12,8 +12,4 @@ package tp2_manip_rogier;
  */
 public class Moussaka {
     int nbCalories;
-
-public Moussaka (){
-   nbCalories = 0; 
-}
 }
