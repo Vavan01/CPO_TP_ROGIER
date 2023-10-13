@@ -25,10 +25,19 @@ public class Personne {
     }
     
     public boolean ajouter_voiture( Voiture voiture_a_ajouter) {
-        if (voiture_a_ajouter == Proprietaire){
+        //test de l’attribut proprietaire de la voiture passée (null ou pas).
+        if (voiture_a_ajouter.Proprietaire != null){
+            System.out.println("la voiture a déjà un propriétaire");
             return false;
+        //Si le propriétaire a déjà 3 voitures, return false.
+        }if (nbVoitures >= 3){
+            return false;
+        //Sinon on ajoute une ou plusieurs voitures.
         } else {
-            
+            nbVoitures += 1;
+            liste_voitures[nbVoitures] = voiture_a_ajouter;
+            voiture_a_ajouter.Proprietaire = this ;
+            return true;
         }
 }
 
