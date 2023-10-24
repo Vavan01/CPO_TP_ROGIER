@@ -13,18 +13,20 @@ import java.util.ArrayList;
  *
  * @author Evan1204
  */
-public abstract class Personnage {
+public abstract class Personnage implements etreVivant{
    String nom;
    int PV;
    ArrayList<Arme> liste_Armes;
    Arme Arme_en_Main;
-
+   static int nb_de_Perso;
+   
     public Personnage(String nom, int PV) {
         this.nom = nom;
         this.PV = PV;
         liste_Armes = new ArrayList<Arme>(5);
+        nb_de_Perso++;
     }
-
+    
     public int getPV() {
         return PV;
     }
@@ -34,6 +36,7 @@ public abstract class Personnage {
            System.out.println("Mon sac est fait !");
        } else {
            liste_Armes.add(bigger_weapons);
+           System.out.println(nom+ " a ajouté " +bigger_weapons+ " a son inventaire");
        }
     }
     
@@ -44,17 +47,33 @@ public abstract class Personnage {
             System.out.println("Le personnage personnage a l'arme " +liste_Armes.get(the_weapon)+ " en main");
         }
     }
-
-    public Arme getArme_en_Main() {
-        return Arme_en_Main;
+    
+    public void Equiper_perso(String nom_Arme) {
+        Arme arme_a_Equiper = null;
+        for (Arme arme : liste_Armes) {
+            if (arme.getNom().equals(nom_Arme)) {
+                arme_a_Equiper = arme;
+                break;
+            }
+        }
+        if (arme_a_Equiper != null) {
+            Arme_en_Main = arme_a_Equiper;
+            System.out.println("Arme équipée : " + arme_a_Equiper.getNom());
+        } else {
+            System.out.println("L'arme n'est pas dans l'inventaire.");
+        }
     }
     
-    public void Equiper_perso(String nom_Arme){
+    public void finalize(){
+        nb_de_Perso = nb_de_Perso-1;
+    }
         
-    }
-    
     @Override
     public String toString() {
-        return "Personnage{" + "nom=" + nom + ", PV=" + PV + '}';
+        String infoPersonnage = "Personnage{" + "nom=" + nom + ", PV=" + PV + '}';
+        if (Arme_en_Main != null) {
+            infoPersonnage += "\nArme en main : " + Arme_en_Main.getNom();
+        }
+        return infoPersonnage;
     }
 }
