@@ -8,6 +8,7 @@ package Personnage;
 
 import Armes.Arme;
 import java.util.ArrayList;
+import tp3_heroic_fantasy_rogier.etreVivant;
 
 /**
  *
@@ -64,9 +65,23 @@ public abstract class Personnage implements etreVivant{
         }
     }
     
+    public void seFatiguer() {
+        PV -= 10;// Réduit les points de vie du personnage de 10
+    }
+
+    public boolean estVivant() {
+        return PV > 0;// Un personnage est vivant s'il a des points de vie positifs
+    }
+    
+    public void estAttaque(int points) {
+        PV -= points;// Réduit les points de vie du personnage en fonction de l'attaque reçue
+    }
+    
+
     public void finalize(){
         nb_de_Perso = nb_de_Perso-1;
     }
+    
         
     @Override
     public String toString() {
