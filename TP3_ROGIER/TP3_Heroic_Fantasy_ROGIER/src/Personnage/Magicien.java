@@ -14,10 +14,12 @@ import Armes.Arme;
  */
 public class Magicien extends Personnage {
     boolean confirme;
-
+    static int nb_de_Magicien;
+    
     public Magicien(boolean confirme, String nom, int PV) {
         super(nom, PV);
         this.confirme = confirme;
+        nb_de_Magicien++;
         if (confirme == true){
             System.out.println(nom+ " est un magicien confirme");
         } else {
@@ -27,5 +29,9 @@ public class Magicien extends Personnage {
 
     public void setConfirme(boolean confirme) {
         this.confirme = confirme;
+    }
+    
+    public void finalize(){
+        nb_de_Magicien = nb_de_Magicien-1;
     }
 }

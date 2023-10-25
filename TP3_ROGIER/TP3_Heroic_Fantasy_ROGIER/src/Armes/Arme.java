@@ -27,6 +27,10 @@ public abstract class Arme {
         return Niveau_attaque;
     }
 
+    public String getNom() {
+        return nom;
+    }
+    
 @Override
     public String toString() { //toString
         return nom + " " + Niveau_attaque + " ";

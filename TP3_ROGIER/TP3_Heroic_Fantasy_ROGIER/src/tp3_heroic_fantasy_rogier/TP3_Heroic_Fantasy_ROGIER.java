@@ -49,5 +49,27 @@ public class TP3_Heroic_Fantasy_ROGIER {
         lesPersonnages.add(Conan);
         lesPersonnages.add(Lannister);
         System.out.println(lesPersonnages);
+        
+        Guerrier Lanfeust = new Guerrier(false,"Lanfeust",50);
+        Magicien Cixi = new Magicien(true,"Cixi",25);
+        
+        Epee Sabre_laser = new Epee("Sabre_laser",20,60);
+        Epee Katana = new Epee("Katana",10,70);
+        Epee Epee_longue = new Epee("Epee_longue",30,7);
+        
+        Baton Baton_Ether = new Baton("Baton_Ether", 10, 13);
+        Baton Baton_Feu = new Baton("Baton_Feu", 14, 40);
+        Baton Baton_Glace = new Baton("Baton_Glace", 7, 12);
+        
+        Lanfeust.ajouter_Armes(Epee_longue);
+        Lanfeust.ajouter_Armes(Sabre_laser);
+        Lanfeust.ajouter_Armes(Baton_Glace);
+        Lanfeust.Equiper_perso("Epee_longue");
+        
+        Cixi.ajouter_Armes(Baton_Ether);
+        Cixi.ajouter_Armes(Baton_Feu);
+        Cixi.ajouter_Armes(Katana);
+        
+        
 }
 }
