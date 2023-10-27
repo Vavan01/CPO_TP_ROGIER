@@ -35,11 +35,7 @@ public class LightOff_ROGIER_version_console {
     cel1.getEtat();
     System.out.println(cel1.getEtat());
 
-    
-        int min = 0;
-        int max = 2;
-        int randomInt = (int) (Math.random() * (max - min + 1)) + min;
-        System.out.println(randomInt);
+    cel1.GrilleDeJeu(5,5);
     
     }
     

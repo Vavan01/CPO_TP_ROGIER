@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Evan1204
  */
 public class GrilleDeJeu{
-    CelluleLumineuse[][] matriceCellules;
+    CelluleLumineuse[][] matriceCellules = null;
     int nbLignes;
     int nbColonnes;
 
@@ -48,42 +48,85 @@ public class GrilleDeJeu{
      * une ligne, soit une colonne, soit une diagonale de cellules dans la grille
      * @param aucun
      */
-    public void activerLigneColonneOuDiagonaleAleatoire(int ete){
+    public void activerLigneColonneOuDiagonaleAleatoire() {
         int[] tabAlea = new int[3]; // Initialisation du tableau pour deux résultats possibles
         Random nbAlea = new Random();
+        int idLigne = nbAlea.nextInt(matriceCellules.length);
+        int idColonne = nbAlea.nextInt(matriceCellules[0].length);
         for (int i = 0; i < matriceCellules.length; i++) {
-            int n = nbAlea.nextInt(3); // Génère un nombre aléatoire entre 0 et 2
+            int n = nbAlea.nextInt(4); // Génère un nombre aléatoire entre 0 et 2
             tabAlea[n]++; // Incrémente la case correspondant au résultat du lancer
-            if (tabAlea[n] == 1) {
-                matriceCellules[x][y].activerLigneDeCellules(int idLigne);
-                }
+            if (tabAlea[n] == 0){
+                activerLigneDeCellules(idLigne);
             } else if (tabAlea[n] == 1) {
-                for (int y = 0; y < matriceCellules.length; y++) {
-                    matriceCellules[0][y].activerCellule();
-                }
+                activerColonneDeCellules(idColonne);             
             } else if (tabAlea[n] == 2) {
-                for (int x = 0; x < matriceCellules.length; x++) {
-                    for (int y = 0; y < matriceCellules.length; y++) {
-                        if (x == y) {
-                            matriceCellules[x][y].activerCellule();
-                        }
-                    }
+                activerDiagonaleMontante();
+            } else if (tabAlea[n] == 3) {
+                activerDiagonaleDescendante();
+            }
+
+        }
+    }
+    
+    public void melangerMatriceAleatoirement(int nbTours){
+        eteindreToutesLesCellules();
+        for (int tour = 0; tour < nbTours; tour++) {
+            activerLigneColonneOuDiagonaleAleatoire();
+        }
+    }
+    
+    public void activerLigneDeCellules(int idLigne){
+        for (int y = 0; y < matriceCellules.length; y++) {
+            matriceCellules[idLigne][y].activerCellule();
+    }
+    }
+    
+    
+    public void activerColonneDeCellules(int idColonne){
+        for (int x = 0; x < matriceCellules.length; x++) {
+            matriceCellules[x][idColonne].activerCellule();
+    }
+    }
+    
+    
+    public void activerDiagonaleDescendante() {
+        for (int x = 0; x < matriceCellules.length; x++) {
+            for (int y = 0; y < matriceCellules.length; y++) {
+                if (x == y) {
+                    matriceCellules[x][y].activerCellule();
                 }
             }
         }
     }
 
-    public int melangerMatriceAleatoirement(int nbTours){
-        
-    }
-    
-    public void activerLigneDeCellules(int idLigne){
+    public void activerDiagonaleMontante(){
         for (int x = 0; x < matriceCellules.length; x++) {
-            matriceCellules[idLigne][0].activerCellule();
-    }
-    
-    public void activerColonneDeCellules(int idColonne){
-        
-    } 
-}
+            for (int y = 0; y < matriceCellules.length; y++) {
+                if (x == y) {            
+                    matriceCellules[x][nbColonnes - 1 - y].activerCellule();
+                }
+            }
+        }
+    }   
 
+    public boolean cellulesToutesEteintes() {
+        for (int x = 0; x < matriceCellules.length; x++) {
+            for (int y = 0; y < matriceCellules.length; y++) {
+                if (matriceCellules[x][y].getEtat()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "GrilleDeJeu{" + "matriceCellules=" + matriceCellules + ", nbLignes=" + nbLignes + ", nbColonnes=" + nbColonnes + '}';
+    }
+
+
+
+
+}
