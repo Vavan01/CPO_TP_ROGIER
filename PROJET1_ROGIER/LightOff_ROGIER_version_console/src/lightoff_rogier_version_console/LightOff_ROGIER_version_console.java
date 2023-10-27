@@ -35,7 +35,8 @@ public class LightOff_ROGIER_version_console {
     cel1.getEtat();
     System.out.println(cel1.getEtat());
 
-    cel1.GrilleDeJeu(5,5);
+    
+    GrilleDeJeu premierPlateau = new GrilleDeJeu(5,5);
     
     }
     

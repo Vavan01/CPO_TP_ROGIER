@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Evan1204
  */
 public class GrilleDeJeu{
-    CelluleLumineuse[][] matriceCellules = null;
+    CelluleLumineuse[][] matriceCellules;
     int nbLignes;
     int nbColonnes;
 
@@ -69,6 +69,11 @@ public class GrilleDeJeu{
         }
     }
     
+    /**
+     * melangerMatriceAleatoirement permet de générer un plateau de cellules 
+     * lumineuses de manière aléatoire à partir d’un nombre spécifié de tours
+     * @param nbTours
+     */
     public void melangerMatriceAleatoirement(int nbTours){
         eteindreToutesLesCellules();
         for (int tour = 0; tour < nbTours; tour++) {
@@ -76,20 +81,30 @@ public class GrilleDeJeu{
         }
     }
     
+    /**
+     * activerLigneDeCellules active toutes les cellules d'une ligne
+     * @param idLigne
+     */
     public void activerLigneDeCellules(int idLigne){
         for (int y = 0; y < matriceCellules.length; y++) {
             matriceCellules[idLigne][y].activerCellule();
     }
     }
     
-    
+    /**
+     * activerColonneDeCellules active toutes les cellules d'une colonne
+     * @param idColonne
+     */
     public void activerColonneDeCellules(int idColonne){
         for (int x = 0; x < matriceCellules.length; x++) {
             matriceCellules[x][idColonne].activerCellule();
     }
     }
     
-    
+    /**
+     * activerDiagonaleDescendante active la diagonale descendante de la grille 
+     * en allumant les cellules correspondantes.
+     */
     public void activerDiagonaleDescendante() {
         for (int x = 0; x < matriceCellules.length; x++) {
             for (int y = 0; y < matriceCellules.length; y++) {
@@ -100,6 +115,10 @@ public class GrilleDeJeu{
         }
     }
 
+    /**
+     * activerDiagonaleMontante active la diagonale montante de la grille 
+     * en allumant les cellules correspondantes.
+     */
     public void activerDiagonaleMontante(){
         for (int x = 0; x < matriceCellules.length; x++) {
             for (int y = 0; y < matriceCellules.length; y++) {
@@ -110,6 +129,12 @@ public class GrilleDeJeu{
         }
     }   
 
+    /**
+     * vérifie si toutes les cellules de la grille sont éteintes :
+     *  - retourne true si toutes les cellules sont éteintes
+     *  - retourne false sinon
+     * @return true ou false
+     */
     public boolean cellulesToutesEteintes() {
         for (int x = 0; x < matriceCellules.length; x++) {
             for (int y = 0; y < matriceCellules.length; y++) {
@@ -121,12 +146,28 @@ public class GrilleDeJeu{
         return true;
     }
 
+    /**
+     *
+     * @return une grille générée aléatoirement dans la console
+     */
     @Override
     public String toString() {
-        return "GrilleDeJeu{" + "matriceCellules=" + matriceCellules + ", nbLignes=" + nbLignes + ", nbColonnes=" + nbColonnes + '}';
+        StringBuilder gridString = new StringBuilder();
+        gridString.append(" |");
+        for (int i = 0; i < nbColonnes; i++) {
+            gridString.append(" " + i + " |");
+        }
+        gridString.append("\n");
+        for (int i = 0; i < nbLignes; i++) {
+            gridString.append("--------------------------------\n");
+            gridString.append(i + " |");
+            for (int j = 0; j < nbColonnes; j++) {
+                gridString.append(" " + (matriceCellules[i][j].getEtat() ? "X" : "O") + " |");
+            }
+            gridString.append("\n");
+        }
+        gridString.append("--------------------------------\n");
+
+        return gridString.toString();
     }
-
-
-
-
 }
