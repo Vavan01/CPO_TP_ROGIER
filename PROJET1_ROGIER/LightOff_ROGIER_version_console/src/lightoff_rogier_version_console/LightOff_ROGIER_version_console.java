@@ -18,9 +18,6 @@ public class LightOff_ROGIER_version_console {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//Testez chacune de vos méthodes dans la fonction main() : créez une ou deux cellules
-//lumineuses, affichez leur état, changez ce dernier, raffichez l’état pour vérifier que ce
-//dernier a bien été mis à jour.
 
     CelluleLumineuse cel1 = new CelluleLumineuse();
     cel1.getEtat();
@@ -36,8 +33,7 @@ public class LightOff_ROGIER_version_console {
     System.out.println(cel1.getEtat());
 
     
-    GrilleDeJeu premierPlateau = new GrilleDeJeu(5,5);
-    
+    Partie partie1 = new Partie(5,5);
+    partie1.LancerPartie();
     }
-    
 }
