@@ -33,7 +33,7 @@ public class LightOff_ROGIER_version_console {
     System.out.println(cel1.getEtat());
 
     
-    Partie partie1 = new Partie(5,5);
+    Partie partie1 = new Partie(7,7);
     partie1.LancerPartie();
     }
 }

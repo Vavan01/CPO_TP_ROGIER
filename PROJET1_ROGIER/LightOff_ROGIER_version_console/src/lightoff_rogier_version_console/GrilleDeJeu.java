@@ -17,12 +17,13 @@ public class GrilleDeJeu{
 
     /**
      * Constructeur
-     * @param nbLignes
-     * @param nbColonnes
+     * @param le_nbLignes
+     * @param le_nbColonnes
      */
-    public GrilleDeJeu(int nbLignes, int nbColonnes) {
-        this.nbLignes = nbLignes;
-        this.nbColonnes = nbColonnes;
+    public GrilleDeJeu(int le_nbLignes, int le_nbColonnes) {
+        this.nbLignes = le_nbLignes;
+        this.nbColonnes = le_nbColonnes;
+        matriceCellules = new CelluleLumineuse[nbLignes][nbColonnes];
         for (int x=0 ; x<matriceCellules.length; x++){
             for (int y=0 ; y<matriceCellules.length; y++){
                 matriceCellules[x][y] = new CelluleLumineuse();
@@ -33,7 +34,6 @@ public class GrilleDeJeu{
     /**
      * eteindreToutesLesCellules éteint toutes les cellules de la grille, en
      * passant chaque cellule en état "éteint".
-     * @param aucun
      */
     public void eteindreToutesLesCellules(){
         for (int x=0 ; x<matriceCellules.length; x++){
@@ -46,26 +46,20 @@ public class GrilleDeJeu{
     /**
      * activerLigneColonneOuDiagonaleAleatoire active de manière aléatoire soit 
      * une ligne, soit une colonne, soit une diagonale de cellules dans la grille
-     * @param aucun
      */
     public void activerLigneColonneOuDiagonaleAleatoire() {
-        int[] tabAlea = new int[3]; // Initialisation du tableau pour deux résultats possibles
         Random nbAlea = new Random();
-        int idLigne = nbAlea.nextInt(matriceCellules.length);
-        int idColonne = nbAlea.nextInt(matriceCellules[0].length);
-        for (int i = 0; i < matriceCellules.length; i++) {
-            int n = nbAlea.nextInt(4); // Génère un nombre aléatoire entre 0 et 2
-            tabAlea[n]++; // Incrémente la case correspondant au résultat du lancer
-            if (tabAlea[n] == 0){
-                activerLigneDeCellules(idLigne);
-            } else if (tabAlea[n] == 1) {
-                activerColonneDeCellules(idColonne);             
-            } else if (tabAlea[n] == 2) {
-                activerDiagonaleMontante();
-            } else if (tabAlea[n] == 3) {
-                activerDiagonaleDescendante();
-            }
-
+        int n = nbAlea.nextInt(4); // Génère un nombre aléatoire entre 0 et 3
+        int la_Ligne = nbAlea.nextInt(nbLignes);
+        int la_Colonne = nbAlea.nextInt(nbColonnes);
+        if (n == 0) {
+            activerLigneDeCellules(la_Ligne);
+        } else if (n == 1) {
+            activerColonneDeCellules(la_Colonne);
+        } else if (n == 2) {
+            activerDiagonaleMontante();
+        } else if (n == 3) {
+            activerDiagonaleDescendante();
         }
     }
     
@@ -153,20 +147,20 @@ public class GrilleDeJeu{
     @Override
     public String toString() {
         StringBuilder gridString = new StringBuilder();
-        gridString.append(" |");
-        for (int i = 0; i < nbColonnes; i++) {
-            gridString.append(" " + i + " |");
+        gridString.append("  |");
+        for (int y = 0; y < nbColonnes; y++) {
+            gridString.append(" " + y + " |");
         }
         gridString.append("\n");
-        for (int i = 0; i < nbLignes; i++) {
-            gridString.append("--------------------------------\n");
-            gridString.append(i + " |");
-            for (int j = 0; j < nbColonnes; j++) {
-                gridString.append(" " + (matriceCellules[i][j].getEtat() ? "X" : "O") + " |");
+        for (int x = 0; x < nbLignes; x++) {
+            gridString.append("-------------------------------\n");
+            gridString.append(x+ " |");
+            for (int y = 0; y < nbColonnes; y++) {
+                gridString.append(" " + (matriceCellules[x][y].getEtat() ? "X" : "O") + " |");
             }
             gridString.append("\n");
         }
-        gridString.append("--------------------------------\n");
+        gridString.append("-------------------------------\n");
 
         return gridString.toString();
     }

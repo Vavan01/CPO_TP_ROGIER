@@ -12,16 +12,16 @@ import java.util.Scanner;
  * @author Evan1204
  */
 public class Partie {
-    private GrilledeCellules grille;
-    private int nbCoups;
+    GrilleDeJeu grille;
+    int nbCoups;
 
     /**
      * Constructeur
      * @param nbLignes
      * @param nbColonnes
      */
-    public Partie(int nbLignes, int nbColonnes) {
-        grille = new GrilledeCellules(nbLignes, nbColonnes);
+    public Partie(int nbLignes, int nbColonnes){
+        grille = new GrilleDeJeu(nbLignes, nbColonnes);
         nbCoups = 0;
     }
 
@@ -30,7 +30,9 @@ public class Partie {
      * donc d'initialiser la partie.
      */
     public void initialiserPartie() {
-        nbCoups = 0;
+        while (grille.cellulesToutesEteintes() == true){
+            grille.melangerMatriceAleatoirement(10);
+        }
     }
 
     /**
@@ -40,40 +42,37 @@ public class Partie {
      * elle affiche le nombre de coups nécessaires pour y parvenir.
      */
     public void LancerPartie() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Bienvenue et c'est l'heure de jouer à LightOff :");
         initialiserPartie();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Bienvenue sur LightOff !");
+        System.out.println(grille);
         while (grille.cellulesToutesEteintes() == false) {
-            System.out.println("A votre tour, choissisez qu'est-ce que vous voulez modifier:");
-            System.out.println("1) Une Ligne");
-            System.out.println("2) Une Colonne");
-            System.out.println("3) Une diagonale Descendante");
-            System.out.println("4) Une Diagonale Montante");
-            System.out.println(grille);
-            int modif = sc.nextInt();
-            if (modif == 1) {
-                System.out.println("Choissisez votre ligne à modifier");
-                int numL = sc.nextInt();
-                grille.activerLigneDeCellules(numL);
+            System.out.println("A toi de jouer ! que veux-tu modifier :\n1) Une Ligne ?\n2) Une Colonne ?\n3) Une diagonale Descendante ?\n4) Une Diagonale Montante ?");
+            int A_modifier = sc.nextInt();
+            if (A_modifier == 1) {
+                System.out.println("Quelle ligne veux-tu modifier ?");
+                int ligneL = sc.nextInt();
+                grille.activerLigneDeCellules(ligneL);
                 System.out.println(grille);
                 nbCoups++;
-            } else if (modif == 2) {
-                System.out.println("Choissisez votre colonne à modifier");
-                int numC = sc.nextInt();
-                grille.activerColonneDeCellules(numC);
+            }else if (A_modifier == 2) {
+                System.out.println("Quelle colonne veux-tu modifier ?");
+                int colonneC = sc.nextInt();
+                grille.activerColonneDeCellules(colonneC);
                 System.out.println(grille);
                 nbCoups++;
-            } else if (modif == 3) {
+            }else if (A_modifier == 3) {
                 grille.activerDiagonaleDescendante();
                 System.out.println(grille);
                 nbCoups++;
-            }
-            if (modif == 4) {
+            }else{
                 grille.activerDiagonaleMontante();
                 System.out.println(grille);
+                nbCoups++;
             }
-            nbCoups++;
         }
     }
 }
+
+// modif : ajouter un message de victoire + faire un système de niveau 
 
