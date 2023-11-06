@@ -21,19 +21,19 @@ public class LightOff_ROGIER_version_console {
 
     CelluleLumineuse cel1 = new CelluleLumineuse();
     cel1.getEtat();
-    System.out.println(cel1.getEtat());
+    //System.out.println(cel1.getEtat());
     cel1.activerCellule();
     cel1.getEtat();
-    System.out.println(cel1.getEtat());
+    //System.out.println(cel1.getEtat());
     
     cel1.activerCellule();
     cel1.eteindreCellule();
     cel1.estEteint();
     cel1.getEtat();
-    System.out.println(cel1.getEtat());
+    //System.out.println(cel1.getEtat());
 
     
-    Partie partie1 = new Partie(7,7);
+    Partie partie1 = new Partie("moyen");
     partie1.LancerPartie();
     }
 }
