@@ -139,6 +139,15 @@ public class GrilleDeJeu{
         }
         return true;
     }
+    
+    /**
+     * getTailleGrille permet d'avoir accès à la taille de la grille.
+     * @return la taille de la grille.
+     */
+    public int getTailleGrille() {
+    return matriceCellules.length;
+}
+
 
     /**
      *

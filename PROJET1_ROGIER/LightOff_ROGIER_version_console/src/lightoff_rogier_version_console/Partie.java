@@ -17,23 +17,34 @@ public class Partie {
 
     /**
      * Constructeur
-     * @param nbLignes
-     * @param nbColonnes
+     * @param niveauDifficulte Le niveau de difficulté : "facile", "moyen" ou "difficile"
      */
-    public Partie(int nbLignes, int nbColonnes){
-        grille = new GrilleDeJeu(nbLignes, nbColonnes);
+    public Partie(String niveauDifficulte) {
+        if (niveauDifficulte.equals("facile")) {
+            grille = new GrilleDeJeu(5,5);
+        } else if (niveauDifficulte.equals("moyen")) {
+            grille = new GrilleDeJeu(7,7);
+        } else if (niveauDifficulte.equals("difficile")) {
+            grille = new GrilleDeJeu(10,10);
+        }
         nbCoups = 0;
     }
 
     /**
-     * initialiserPartie() s’assure que la grille de jeu est bien mélangée et 
+     * initialiserPartie() s’assure que la grille de jeu est bien mélangée et
      * donc d'initialiser la partie.
      */
     public void initialiserPartie() {
-        while (grille.cellulesToutesEteintes() == true){
-            grille.melangerMatriceAleatoirement(10);
-        }
+    int tailleGrille = grille.getTailleGrille();
+    if (tailleGrille == 5) {
+        grille.melangerMatriceAleatoirement(5);
+    } else if (tailleGrille == 7) {
+        grille.melangerMatriceAleatoirement(7);
+    } else if (tailleGrille == 10) {
+        grille.melangerMatriceAleatoirement(10);
     }
+}
+
 
     /**
      * lancerPartie() permet de jouer à LightOff en activant les lignes, les 
