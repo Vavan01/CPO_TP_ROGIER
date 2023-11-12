@@ -130,16 +130,40 @@ public class GrilleDeJeu{
      *  - retourne false sinon
      * @return true ou false
      */
-public boolean cellulesToutesEteintes() {
-    for (int x = 0; x < matriceCellules.length; x++) {
-        for (int y = 0; y < matriceCellules.length; y++) {
-            if (matriceCellules[x][y].getEtat() != Etat.Eteint) {
+    public boolean cellulesToutesEteintes() {
+        for (int x = 0; x < matriceCellules.length; x++) {
+            for (int y = 0; y < matriceCellules.length; y++) {
+                Etat etatCellule = matriceCellules[x][y].getEtat();
+                if (matriceCellules[x][y].getEtat() != Etat.Eteint) {
                 return false;
             }
         }
-    }
-    return true;
+    }return true;
 }
+    
+    public boolean CellulesToutesAllumees() {
+        for (int x = 0; x < matriceCellules.length; x++) {
+            for (int y = 0; y < matriceCellules.length; y++) {
+                Etat etatCellule = matriceCellules[x][y].getEtat();
+                if (matriceCellules[x][y].getEtat() != Etat.Allume) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean CellulesToutesInter(){
+        for (int x = 0; x < matriceCellules.length; x++) {
+            for (int y = 0; y < matriceCellules.length; y++) {
+                Etat etatCellule = matriceCellules[x][y].getEtat();
+                if (matriceCellules[x][y].getEtat() != Etat.Inter) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     
     /**
