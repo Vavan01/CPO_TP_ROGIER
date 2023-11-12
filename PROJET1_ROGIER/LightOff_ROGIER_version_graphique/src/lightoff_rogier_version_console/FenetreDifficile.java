@@ -147,6 +147,7 @@ public class FenetreDifficile extends javax.swing.JFrame {
             btnDiagSup.setEnabled(false);
             FenetreVictoire f = new FenetreVictoire();
             f.setVisible(true);
+            dispose();
         }else if (grille.CellulesToutesAllumees() == true){
             btnLigne0.setEnabled(false);
             btnLigne1.setEnabled(false);
@@ -168,6 +169,7 @@ public class FenetreDifficile extends javax.swing.JFrame {
             btnDiagSup.setEnabled(false);
             FenetreVictoire f = new FenetreVictoire();
             f.setVisible(true);
+            dispose();
         }else if (grille.CellulesToutesInter() == true){
             btnLigne0.setEnabled(false);
             btnLigne1.setEnabled(false);
@@ -189,6 +191,7 @@ public class FenetreDifficile extends javax.swing.JFrame {
             btnDiagSup.setEnabled(false);        
             FenetreVictoire f = new FenetreVictoire();
             f.setVisible(true);
+            dispose();
         }
     } 
 
